@@ -16,7 +16,8 @@ type SystemStatus = {
     memory: Memory,
     disks: [Disk],
     load_avg: LoadAvg,
-    networks: [Network]
+    networks: [Network],
+    processes: [Process]
 }
 type LoadAvg = {
     one: number,
@@ -31,7 +32,29 @@ type Network = {
     transmitted: number,
     total_transmitted: number
 }
-
+type Process = {
+    name: string,
+    cpu_usage: number,
+    cmd: string,
+    exe: string,
+    environ: string,
+    cwd: string,
+    root: string,
+    memory: number,
+    virtual_memory: number,
+    start_time: number,
+    run_time: number,
+    disk_usage: DiskUsage,
+    parent: number,
+    pid: number,
+    status: string
+}
+type DiskUsage = {
+    total_written_bytes: number,
+    written_bytes: number,
+    total_read_bytes: number,
+    read_bytes: number
+}
 type Memory = {
     total_memory: number,
     used_memory: number,
@@ -53,4 +76,4 @@ type Disk = {
     type: string
 }
 
-export {Network, WsMessage, MsgType, SystemStatus }
+export {Network, WsMessage, MsgType, SystemStatus, Process }
